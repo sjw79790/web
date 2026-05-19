@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>ShinJW의 게임 개발</title>
+  <link rel="stylesheet" href="./css/index.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+
+<div class="container">
+  <div id="head">
+    <a href="">
+      <img src="./images/New Profile (3000).jpg" alt="Error Occured with Logo image" class="logo">
+    </a>
+    <header class="company">ShinJW의 게임 개발</header>
+  </div>
+
+  <nav class="nav">
+    <ul>
+      <li><a href="#start">페이지 소개</a></li>
+      <li><a href="#introduce">게임 소개</a></li>
+      <li><a href="#process">진행 상황</a></li>
+      <li><a href="#algorithm">알고리즘</a></li>
+      <li><a href="#contact">연락/링크</a></li>
+    </ul>
+  </nav>
+
+  <div class="content" id="start">
+    <h2>페이지 소개</h2>
+    <div>
+      <p>
+        이 페이지는 ShinJW에 의해 제작되었으며, ShinJW는 현재 해당 게임을 개발 및
+        전자음악 작곡 활동을 하고있는 1인 개발자의 활동명입니다.<br>
+      </p>
+      <hr class="horLongLine"/>
+      <p>
+        이 웹 페이지는 ShinJW가 현재 만들고 있는 게임의 개발 진행 상황을 공유하는 것을
+        목적으로 만들어졌습니다.
+      </p>
+    </div>
+  </div>
+
+  <div class="content" id="introduce">
+    <h2>게임 소개</h2>
+    <div>
+      <p>
+        해당 게임은 
+        Apache 공격 헬리콥터와 AC-130 공격기 시뮬레이터로, 해당 기체들을 조작하는 것을 쉽고 
+        적당히 현실감있는 경험을 제공합니다.
+      </p>
+    </div>
+  </div>
+
+  <div class="content" id="process">
+    <h2>진행 상황</h2>
+    <div class="processForm">
+      <div class="process-item">
+        <img id="circle" src="./images/Circle.png" alt="Error Occured with Circle image">
+        <div>
+          <a>기획</a>
+        </div>
+      </div>
+      <div class="process-item">
+        <img id="circle" src="./images/Circle.png" alt="Error Occured with Circle image">
+        <div>
+          <a>기본  조작</a>
+        </div>
+      </div>
+      <div class="process-item">
+        <img id="circle" src="./images/Circle.png" alt="Error Occured with Circle image">
+        <div>
+          <a>NPC 개발</a>
+        </div>
+      </div>
+      <div class="process-item">
+        <img id="circle" src="./images/Circle.png" alt="Error Occured with Circle image">
+        <div>
+          <a>맵 개발</a>
+        </div>
+      </div>
+      <div class="process-item">
+        <img id="circle" src="./images/Circle.png" alt="Error Occured with Circle image">
+        <div>
+          <a>온라인<br>기능 개발</a>
+        </div>
+      </div>
+      <div class="process-item">
+        <img id="circle" src="./images/MissionLocationMark.png" alt="Error Occured with MissionLocationMark image">
+        <div>
+          <a>편의<br>기능 개발</a>
+        </div>
+      </div>
+      <div class="process-item">
+        <img id="circle" src="./images/MissionLocationMark.png" alt="Error Occured with MissionLocationMark image">
+        <div>
+          <a>출시</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="extra">
+      <a>*상황에 따라서 추가로 맵을 제작할 가능성이 있습니다.</a>
+    </div>
+  </div>
+
+  <div class="content" id="algorithm">
+    <h2>알고리즘</h2>
+    <div>
+      <ul class="subHead"><li><h3>물리 기반 비행 제어</h3></li></ul>
+      <p>
+        플레이어 입력을 즉시 위치 변화로 처리하지 않고, 기체의 pitch/roll
+        값을 기반으로 추진 방향을 계산합니다. 이후 수평 속도, 공기저항, 최고 속도 제한,
+        고도 손실을 적용해 헬기와 항공기의 조종감을 구분했습니다.
+      </p>
+      <div class="videoArea">
+        <iframe
+          id="movement"
+          title="물리 기반 비행 제어"
+          src="https://www.youtube.com/embed/hJr9TAzCbD8?enablejsapi=1&autoplay=1&mute=1&controls=0&modestbranding=1&rel=0&playsinline=1&loop=1&playlist=hJr9TAzCbD8"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          referrerpolicy="strict-origin-when-cross-origin"
+          allowfullscreen
+        ></iframe>
+      </div>
+    </div>
+
+    <div>
+      <ul class="subHead"><li><h3>무기별 사격 제어</h3></li></ul>
+      <p>
+        각 무기는 발사 속도, 탄약 수, 발사 위치, 조준 제한 각도를 따로 관리합니다.
+        기관포 등의 연사 무기는 연속 사격, 로켓은 좌우 발사대 교대, 헬파이어는 락온 후 발사되는 구조로
+        구현되어 무기마다 다른 운용감을 제공합니다.
+      </p>
+      <div class="videoArea">
+        <iframe
+          id="weapon"
+          title="무기별 사격 제어"
+          src="https://www.youtube.com/embed/hJr9TAzCbD8?enablejsapi=1&autoplay=1&mute=1&controls=0&modestbranding=1&rel=0&playsinline=1&loop=1&playlist=hJr9TAzCbD8"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          referrerpolicy="strict-origin-when-cross-origin"
+          allowfullscreen
+        ></iframe>
+      </div>
+    </div>
+
+    <div>
+      <ul class="subHead"><li><h3>오브젝트 풀링 기반 탄환 관리</h3></li></ul>
+      <p>
+        탄환과 이펙트를 실시간 생성/삭제하지 않고, 사전에 생성한 오브젝트 풀에서 꺼내
+        사용한 뒤 다시 반환합니다. 이를 통해 대규모 교전 상황에서도 프레임 저하를 줄이고
+        안정적인 전투 흐름을 유지합니다.
+      </p>
+      <div class="videoArea">
+        <iframe
+          id="pool"
+          title="오브젝트 풀링 기반 탄환 관리"
+          src="https://www.youtube.com/embed/pWbr5e3pfBo?enablejsapi=1&autoplay=1&mute=1&controls=0&modestbranding=1&rel=0&playsinline=1&loop=1&playlist=pWbr5e3pfBo"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          referrerpolicy="strict-origin-when-cross-origin"
+          allowfullscreen
+        ></iframe>
+      </div>
+    </div>
+
+    <div>
+      <ul class="subHead"><li><h3>레이캐스트 기반 조준 및 명중 판정</h3></li></ul>
+      <p>
+        카메라 또는 발사 기준점에서 레이캐스트를 수행해 가장 가까운 충돌 지점을 선택합니다.
+        해당 지점을 기준으로 무기 회전, 탄도 방향, 피격 대상 판정을 처리하여 플레이어가
+        조준한 위치와 실제 명중 결과가 자연스럽게 연결됩니다.
+      </p>
+      <div class="videoArea">
+        <iframe
+          id="raycast"
+          title="레이캐스트 기반 조준 및 명중 판정"
+          src="https://www.youtube.com/embed/pWbr5e3pfBo?enablejsapi=1&autoplay=1&mute=1&controls=0&modestbranding=1&rel=0&playsinline=1&loop=1&playlist=pWbr5e3pfBo"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          referrerpolicy="strict-origin-when-cross-origin"
+          allowfullscreen
+        ></iframe>
+      </div>
+    </div>
+
+    <div>
+      <ul class="subHead"><li><h3>거리 감쇠형 폭발 피해</h3></li></ul>
+      <p>
+        폭발 중심을 기준으로 범위 내 피격 가능 대상을 탐색하고,
+        대상과의 거리에 따라 피해량과 충격량을 감쇠시킵니다.
+        가까운 대상은 강한 피해를 받고, 외곽 대상은 약한 피해를 받도록 설계했습니다.
+      </p>
+      <div class="videoArea">
+        <iframe
+          id="dmgRdc"
+          title="거리 감쇠형 폭발 피해"
+          src="https://www.youtube.com/embed/pWbr5e3pfBo?enablejsapi=1&autoplay=1&mute=1&controls=0&modestbranding=1&rel=0&playsinline=1&loop=1&playlist=pWbr5e3pfBo"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          referrerpolicy="strict-origin-when-cross-origin"
+          allowfullscreen
+        ></iframe>
+      </div>
+    </div>
+
+    <div>
+      <ul class="subHead"><li><h3>동적 미션 생성 및 진행 관리</h3></li></ul>
+      <p>
+        미션 지역, 미션 타입, 스폰 유닛을 런타임에 선택하고 배치합니다. 각 미션은 암살,
+        방어, 섬멸, 구조 등 고유한 성공/실패 조건을 가지며, 진행 중 상태를 지속적으로
+        검사해 자동으로 다음 단계로 전환됩니다.
+      </p>
+      <div class="videoArea">
+        <iframe
+          id="mission"
+          title="동적 미션 생성 및 진행 관리"
+          src="https://www.youtube.com/embed/pWbr5e3pfBo?enablejsapi=1&autoplay=1&mute=1&controls=0&modestbranding=1&rel=0&playsinline=1&loop=1&playlist=pWbr5e3pfBo"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          referrerpolicy="strict-origin-when-cross-origin"
+          allowfullscreen
+        ></iframe>
+      </div>
+    </div>
+
+    <div>
+      <ul class="subHead"><li><h3>NavMesh 기반 지상 유닛 이동</h3></li></ul>
+      <p>
+        지상 차량은 NavMesh 경로를 계산해 목표 지점까지 이동합니다.
+        경로 코너, 정지 거리, 회전 각도, 장애 상태를 고려해 속도와 회전을 조절하여 차량이
+        급격히 꺾이거나 비정상적으로 움직이지 않도록 처리했습니다.
+      </p>
+      <div class="videoArea">
+        <iframe
+          id="ai"
+          title="NavMesh 기반 지상 유닛 이동"
+          src="https://www.youtube.com/embed/hJr9TAzCbD8?enablejsapi=1&autoplay=1&mute=1&controls=0&modestbranding=1&rel=0&playsinline=1&loop=1&playlist=hJr9TAzCbD8"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          referrerpolicy="strict-origin-when-cross-origin"
+          allowfullscreen
+        ></iframe>
+      </div>
+    </div>
+
+    <div>
+      <ul class="subHead"><li><h3>상태 기반 유닛 생명주기 관리</h3></li></ul>
+      <p>
+        유닛은 체력, 피격, 사망, 래그돌, 비활성화, 풀 복귀 과정을 하나의 생명주기로
+        관리합니다. 사망 시 점수와 보이스라인을 처리하고, 일정 시간 후 상태를 초기화해
+        다시 스폰 가능한 상태로 되돌립니다.
+      </p>
+      <div class="videoArea">
+        <iframe
+          id="health"
+          title="상태 기반 유닛 생명주기 관리"
+          src="https://www.youtube.com/embed/pWbr5e3pfBo?enablejsapi=1&autoplay=1&mute=1&controls=0&modestbranding=1&rel=0&playsinline=1&loop=1&playlist=pWbr5e3pfBo"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          referrerpolicy="strict-origin-when-cross-origin"
+          allowfullscreen
+        ></iframe>
+      </div>
+    </div>
+
+    <div>
+      <ul class="subHead"><li><h3>네트워크 더미 보간 시스템</h3></li></ul>
+      <p>
+        멀티플레이에서는 원격 플레이어와 유닛의 위치, 회전, 조준점, 사격 상태를
+        주기적으로 수신합니다. 수신 데이터를 즉시 적용하지 않고 보간하여 네트워크
+        지연이나 패킷 간격이 있어도 부드럽게 움직이도록 구성했습니다.
+      </p>
+      <div class="videoArea">
+        <iframe
+          id="online"
+          title="네트워크 더미 보간 시스템"
+          src="https://www.youtube.com/embed/UrrxtTQIBvo?enablejsapi=1&autoplay=1&mute=1&controls=0&modestbranding=1&rel=0&playsinline=1&loop=1&playlist=UrrxtTQIBvo"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          referrerpolicy="strict-origin-when-cross-origin"
+          allowfullscreen
+        ></iframe>
+      </div>
+    </div>
+
+    <div>
+      <ul class="subHead"><li><h3>화면 고정형 목표 마커</h3></li></ul>
+      <p>
+        월드 좌표를 카메라 기준 화면 좌표로 변환하고, 화면 밖 대상은 UI 경계 안으로
+        고정합니다. 이를 통해 플레이어는 목표, 적, 아군, 지상 유닛 탈출 지점의 방향을 지속적으로
+        파악할 수 있습니다.
+      </p>
+      <div class="videoArea">
+        <iframe
+          id="marker"
+          title="화면 고정형 목표 마커"
+          src="https://www.youtube.com/embed/UrrxtTQIBvo?enablejsapi=1&autoplay=1&mute=1&controls=0&modestbranding=1&rel=0&playsinline=1&loop=1&playlist=UrrxtTQIBvo"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          referrerpolicy="strict-origin-when-cross-origin"
+          allowfullscreen
+        ></iframe>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer" id="contact">
+    <h2>연락/링크</h2>
+    <div>
+      <h3>연락</h3>
+      <ul>
+        <li>
+          <a href="mailto:sjw79790@://gmail.com", 문의 제안 드립니다.>
+            Email (It could comes into spam mail)
+          </a>
+        </li>
+        <li><a href="https://discord.gg/YUR8zB5fKe">Discord</a></li>
+      </ul>
+
+      <hr class="horLongLine"/>
+      
+      <h3>링크</h3>
+      <ul>
+        <li>
+          <a href="https://music.apple.com/us/artist/shinjw/1719869855">
+            Apple Music
+          </a>
+        </li>
+        <li>
+          <a href="https://open.spotify.com/artist/72CCOmFJ4AA6PB1DqNJFw4">
+            Spotify
+          </a>
+        </li>
+        <li>
+          <a href="https://music.youtube.com/channel/UCxSTB-BFhgoS0Df6zBvl_Fw?si=1F8wh-gPCx6uatNW">
+            YouTube Music
+          </a>
+        </li>
+        <li>
+          <a href="https://www.youtube.com/channel/UCnz0JDqP6zuqmkJyWnOSnjQ">
+            YouTube [Music]
+          </a>
+        </li>
+        <li>
+          <a href="https://www.youtube.com/@ShinJWextra">
+            YouTube [Extra]
+          </a>
+        </li>
+        <li>
+          <a href="https://shinjw.bandcamp.com">
+            Bandcamp
+          </a>
+        </li>
+        <li>
+          <a href="https://shinjw.newgrounds.com">
+            Newgrounds
+          </a>
+        </li>
+      </ul>
+    </div>
+  </footer>
+</div>
+
+<script src="https://www.youtube.com/iframe_api"></script>
+<script>
+  const videoSegments = [
+    { id: 'movement', start: 315, end: 320 },
+    { id: 'weapon', start: 94, end: 99 },
+    { id: 'pool', start: 92, end: 108 },
+    { id: 'raycast', start: 275, end: 287 },
+    { id: 'dmgRdc', start: 378, end: 386 },
+    { id: 'mission', start: 180, end: 190 },
+    { id: 'ai', start: 691, end: 715 },
+    { id: 'health', start: 227, end: 234 },
+    { id: 'online', start: 135, end: 144 },
+    { id: 'marker', start: 183, end: 200 },
+  ];
+
+  const ytPlayers = {};
+
+  function seekToSegment(player, start) {
+    player.seekTo(start, true);
+    player.playVideo();
+  }
+
+  function onYouTubeIframeAPIReady() {
+    videoSegments.forEach(({ id, start, end }) => {
+      ytPlayers[id] = new YT.Player(id, {
+        events: {
+          onReady: (event) => {
+            event.target.mute();
+            seekToSegment(event.target, start);
+          },
+          onStateChange: (event) => {
+            if (event.data === YT.PlayerState.PLAYING) {
+              const currentTime = event.target.getCurrentTime();
+              if (currentTime >= end) {
+                seekToSegment(event.target, start);
+              }
+            }
+          },
+        },
+      });
+    });
+
+    setInterval(() => {
+      videoSegments.forEach(({ id, start, end }) => {
+        const player = ytPlayers[id];
+        if (!player || typeof player.getCurrentTime !== 'function') return;
+
+        const currentTime = player.getCurrentTime();
+        if (currentTime >= end || currentTime < start - 1) {
+          seekToSegment(player, start);
+        }
+      });
+    }, 250);
+  }
+</script>
+</body>
+</html>
+
+
