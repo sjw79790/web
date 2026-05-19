@@ -399,9 +399,35 @@
     });
   }
 
+  function setPauseCover(id, show) {
+    const area = document.getElementById(id)?.closest('.videoArea');
+    if (area) area.classList.toggle('hide-pause-overlay', show);
+  }
+
   function seekToSegment(player, start) {
     player.seekTo(start, true);
     player.playVideo();
+  }
+
+  function keepSegmentPlaying(player, start, end) {
+    if (!player?.getPlayerState) return;
+
+    const state = player.getPlayerState();
+
+    if (state === YT.PlayerState.PAUSED || state === YT.PlayerState.CUED) {
+      player.playVideo();
+      return;
+    }
+
+    if (state !== YT.PlayerState.PLAYING && state !== YT.PlayerState.BUFFERING) {
+      seekToSegment(player, start);
+      return;
+    }
+
+    const currentTime = player.getCurrentTime();
+    if (currentTime >= end || currentTime < start - 0.5) {
+      seekToSegment(player, start);
+    }
   }
 
   function onYouTubeIframeAPIReady() {
@@ -424,19 +450,23 @@
             seekToSegment(event.target, start);
           },
           onStateChange: (event) => {
-            if (
-              event.data === YT.PlayerState.PAUSED ||
-              event.data === YT.PlayerState.ENDED
-            ) {
-              seekToSegment(event.target, start);
+            if (event.data === YT.PlayerState.PAUSED) {
+              setPauseCover(id, true);
+              event.target.playVideo();
               return;
             }
 
             if (event.data === YT.PlayerState.PLAYING) {
+              setPauseCover(id, false);
               const currentTime = event.target.getCurrentTime();
               if (currentTime >= end) {
                 seekToSegment(event.target, start);
               }
+              return;
+            }
+
+            if (event.data === YT.PlayerState.ENDED) {
+              seekToSegment(event.target, start);
             }
           },
         },
@@ -446,14 +476,9 @@
     setInterval(() => {
       videoSegments.forEach(({ id, start, end }) => {
         const player = ytPlayers[id];
-        if (!player || typeof player.getCurrentTime !== 'function') return;
-
-        const currentTime = player.getCurrentTime();
-        if (currentTime >= end || currentTime < start - 1) {
-          seekToSegment(player, start);
-        }
+        keepSegmentPlaying(player, start, end);
       });
-    }, 250);
+    }, 100);
   }
 
   function loadYouTubeApi() {

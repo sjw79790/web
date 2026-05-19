@@ -206,6 +206,24 @@ a {
   position: relative;
   background-color: #000;
 }
+.videoArea::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 88px;
+  height: 88px;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: #111;
+  opacity: 0;
+  z-index: 2;
+  pointer-events: none;
+  transition: opacity 0.05s;
+}
+.videoArea.hide-pause-overlay::after {
+  opacity: 1;
+}
 .videoArea iframe {
   position: absolute;
   top: 50%;
