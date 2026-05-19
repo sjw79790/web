@@ -384,8 +384,6 @@
       iv_load_policy: '3',
       fs: '0',
       disablekb: '1',
-      loop: '1',
-      playlist: videoId,
     });
 
     if (pageOrigin) {
@@ -409,12 +407,31 @@
   function onYouTubeIframeAPIReady() {
     videoSegments.forEach(({ id, start, end }) => {
       ytPlayers[id] = new YT.Player(id, {
+        playerVars: {
+          autoplay: 1,
+          mute: 1,
+          controls: 0,
+          modestbranding: 1,
+          rel: 0,
+          playsinline: 1,
+          iv_load_policy: 3,
+          fs: 0,
+          disablekb: 1,
+        },
         events: {
           onReady: (event) => {
             event.target.mute();
             seekToSegment(event.target, start);
           },
           onStateChange: (event) => {
+            if (
+              event.data === YT.PlayerState.PAUSED ||
+              event.data === YT.PlayerState.ENDED
+            ) {
+              seekToSegment(event.target, start);
+              return;
+            }
+
             if (event.data === YT.PlayerState.PLAYING) {
               const currentTime = event.target.getCurrentTime();
               if (currentTime >= end) {
